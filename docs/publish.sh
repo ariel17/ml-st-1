@@ -15,6 +15,7 @@ make $FORMATS && \
     rm -rf static && mv _static static && \
     rm -rf sources && mv _sources sources && \
     rm -rf _* && \
+    cd .. && mv docs/* . && rm -rf docs && \
     $GIT add . --all && \
     $GIT commit -a -m "Update content for GH pages." && \
     $GIT push origin +$PAGES;
