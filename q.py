@@ -2,36 +2,37 @@
 # -*- coding: utf-8 -*-
 
 """
-Description: Q is a superior life form how can control time and space. It has
-the hability to generate data describing planetary position for an specific day
-in time.
+Q is a superior life form how can control time and space. It has the hability to
+generate data describing planetary position for an specific day in time.
 
 Use example:
 
-    $ python q.py --days 3
-    > Total days to calculate: 5 (from Vulcano point of view)
-    {'day': 1, 'coords': {'Ferengi': 1, 'Betasoide': 3, 'Vulcano': 355}}
-    {'day': 2, 'coords': {'Ferengi': 2, 'Betasoide': 6, 'Vulcano': 350}}
-    {'day': 3, 'coords': {'Ferengi': 3, 'Betasoide': 9, 'Vulcano': 345}}
+.. code-block:: bash
 
-    $ python q.py --years 3
-    > Total days to calculate: 216 (from Vulcano point of view)
-    {'day': 1, 'coords': {'Ferengi': 1, 'Betasoide': 3, 'Vulcano': 355}}
-    {'day': 2, 'coords': {'Ferengi': 2, 'Betasoide': 6, 'Vulcano': 350}}
-    {'day': 3, 'coords': {'Ferengi': 3, 'Betasoide': 9, 'Vulcano': 345}}
-    ...
+   $ python q.py --days 3
+   > Total days to calculate: 5 (from Vulcano point of view)
+   {'day': 1, 'coords': {'Ferengi': 1, 'Betasoide': 3, 'Vulcano': 355}}
+   {'day': 2, 'coords': {'Ferengi': 2, 'Betasoide': 6, 'Vulcano': 350}}
+   {'day': 3, 'coords': {'Ferengi': 3, 'Betasoide': 9, 'Vulcano': 345}}
 
-    $ python q.py --years 3 --from-planet Betasoide
-    > Total days to calculate: 360 (from Betasoide point of view)
-    {'day': 1, 'coords': {'Ferengi': 1, 'Betasoide': 3, 'Vulcano': 355}}
-    {'day': 2, 'coords': {'Ferengi': 2, 'Betasoide': 6, 'Vulcano': 350}}
-    {'day': 3, 'coords': {'Ferengi': 3, 'Betasoide': 9, 'Vulcano': 345}}
-    ...
+   $ python q.py --years 3
+   > Total days to calculate: 216 (from Vulcano point of view)
+   {'day': 1, 'coords': {'Ferengi': 1, 'Betasoide': 3, 'Vulcano': 355}}
+   {'day': 2, 'coords': {'Ferengi': 2, 'Betasoide': 6, 'Vulcano': 350}}
+   {'day': 3, 'coords': {'Ferengi': 3, 'Betasoide': 9, 'Vulcano': 345}}
+   ...
+
+   $ python q.py --years 3 --from-planet Betasoide
+   > Total days to calculate: 360 (from Betasoide point of view)
+   {'day': 1, 'coords': {'Ferengi': 1, 'Betasoide': 3, 'Vulcano': 355}}
+   {'day': 2, 'coords': {'Ferengi': 2, 'Betasoide': 6, 'Vulcano': 350}}
+   {'day': 3, 'coords': {'Ferengi': 3, 'Betasoide': 9, 'Vulcano': 345}}
+   ...
 """
 
 import argparse
 
-from planets import SolarSystem
+from solar import SolarSystem
 
 
 solar = SolarSystem()

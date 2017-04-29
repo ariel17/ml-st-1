@@ -1,6 +1,6 @@
-=========
- Planets
-=========
+==============
+ Solar System
+==============
 
-.. automodule:: planets
+.. automodule:: solar
    :members:

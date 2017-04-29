@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 """
-Description: United Federation of Planets implementation for weather forecast.
+United Federation of Planets implementation for Solar System representation.
 """
 
 from angles import normalize
