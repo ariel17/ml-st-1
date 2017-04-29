@@ -30,7 +30,7 @@ def set_prefs(prefs):
     # time; use this if you have any problems.
     # The folders should be relative to project root and use '/' for
     # separating folders regardless of the platform rope is running on.
-    # 'src/mysource_folder' for instance.
+    # 'src/my_source_folder' for instance.
     #prefs.add('source_folders', 'src')
 
     # You can extend python path for looking up modules
