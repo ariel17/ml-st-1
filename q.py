@@ -1,16 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import argparse
-
-from planets import SolarSystem
-
 """
 Description: Q is a superior life form how can control time and space. It has
 the hability to generate data describing planetary position for an specific day
 in time.
 """
-__author__ = "Ariel Gerardo Rios (ariel.gerardo.rios@gmail.com)"
+
+import argparse
+
+from planets import SolarSystem
 
 
 solar = SolarSystem()

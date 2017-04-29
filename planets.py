@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 """
 Description: United Federation of Planets implementation for weather forecast.
 """
