@@ -60,3 +60,6 @@ if __name__ == '__main__':
             'day': day,
             'coords': solar.position_coords(day)
         })
+
+
+# vim: ai ts=4 sts=4 et sw=4 ft=python

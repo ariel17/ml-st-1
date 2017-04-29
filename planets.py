@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-from angles import normalize
-
 """
 Description: United Federation of Planets implementation for weather forecast.
 """
-__author__ = "Ariel Gerardo Rios (ariel.gerardo.rios@gmail.com)"
+
+from angles import normalize
 
 
 TOTAL_ORBITAL_GRADES = 360
@@ -40,6 +38,9 @@ class Planet:
 
 
 class SolarSystem:
+    """
+    TODO
+    """
 
     def __init__(self):
         self.ferengi = Planet('Ferengi', 500, 1)
@@ -47,9 +48,15 @@ class SolarSystem:
         self.vulcano = Planet('Vulcano', 1000, 5, False)
 
     def planets(self):
+        """
+        TODO
+        """
         return [self.ferengi, self.betasoide, self.vulcano]
 
     def planet_by_name(self, name):
+        """
+        TODO
+        """
         for planet in self.planets():
             if planet.name == name:
                 return planet
@@ -57,9 +64,15 @@ class SolarSystem:
         return None
 
     def position_coords(self, day):
+        """
+        TODO
+        """
         coords = {}
 
         for planet in self.planets():
             coords[planet.name] = planet.position_coord(day)
 
         return coords
+
+
+# vim: ai ts=4 sts=4 et sw=4 ft=python
