@@ -1,6 +1,0 @@
-=========
- Planets
-=========
-
-.. automodule:: planets
-   :members:
