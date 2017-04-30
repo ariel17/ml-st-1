@@ -87,6 +87,21 @@ class Rain(Weather):
         """
         Verifies if weather condition for rain is given.
 
+        Sources:
+
+        * |1|_
+        * |2|_
+        * |3|_
+
+        .. |1| replace:: Number of Triangles Containing The Point (0,0)
+        .. _1: http://stackoverflow.com/questions/27713046/number-of-triangles-containing-the-point-0-0
+
+        .. |2| replace:: How to determine if a point is in a 2D triangle?
+        .. _2: http://stackoverflow.com/questions/2049582/how-to-determine-if-a-point-is-in-a-2d-triangle
+
+        .. |3| replace:: PerroAzul's jsfiddle
+        .. _3: http://jsfiddle.net/PerroAZUL/zdaY8/1/
+
         >>> from math import radians
         >>> from solar import SolarSystem, Position
         >>> ss = SolarSystem()
