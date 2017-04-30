@@ -33,6 +33,7 @@ Use example:
 import argparse
 
 from solar import SolarSystem
+from forecast import Forecast
 
 
 solar = SolarSystem()
@@ -77,11 +78,22 @@ if __name__ == '__main__':
         total_days, planet.name
     ))
 
-    for day in range(1, total_days + 1):
-        print({
-            'day': day,
-            'coords': solar.position_coords(day)
-        })
+    fc = Forecast()
+    totalized = {'total': total_days}
 
+    for day in range(total_days):
+        coords = solar.positions(day)
+        prediction = fc.predict(coords)
+        totalized.setdefault(prediction, 0)
+        totalized[prediction] += 1
+
+        if prediction is not None:
+            print({
+                'day': day,
+                'coords': coords,
+                'forecast': prediction,
+            })
+
+    print("Totalization: %s" % totalized)
 
 # vim: ai ts=4 sts=4 et sw=4 ft=python

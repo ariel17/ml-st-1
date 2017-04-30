@@ -5,10 +5,41 @@
 United Federation of Planets implementation for Solar System representation.
 """
 
+import math
+import numpy
 from angles import normalize
 
 
-TOTAL_ORBITAL_GRADES = 360
+class Position:
+
+    def __init__(self, planet, day, delta):
+        self.planet = planet
+        self.day = day
+        self.delta = delta  # assuming radians
+
+    def __round(self, value):
+        return 0 if numpy.allclose(value, 0) else value
+
+    def delta_to_xy(self):
+        """
+        TODO
+        """
+        point = (
+            self.planet.distance * self.__round(math.cos(self.delta)),
+            self.planet.distance * self.__round(math.sin(self.delta))
+        )
+        return point
+
+    def __str__(self):
+        return self.__unicode__()
+
+    def __repr__(self):
+        return self.__unicode__()
+
+    def __unicode__(self):
+        return "<Position planet='%s' day=%d delta=%s>" % (
+            self.planet.name, self.day, self.delta
+        )
 
 
 class Planet:
@@ -19,23 +50,24 @@ class Planet:
     def __init__(self, name, distance, angular_speed, is_clockwise=True):
         self.name = name
         self.distance = distance
-        self.angular_speed = angular_speed
-        self.is_clockwise = is_clockwise
+        self.angular_speed = angular_speed if is_clockwise else -angular_speed
 
     def days_in_year(self):
         """
         Based on its angular speed, it returns how many days takes to complete
         an orbit.
         """
-        return int(TOTAL_ORBITAL_GRADES / self.angular_speed)
+        return abs(int((2 * math.pi) / math.radians(self.angular_speed)))
 
-    def position_coord(self, day):
-        delta = int(normalize(self.angular_speed * day))
-
-        if self.is_clockwise:
-            return delta
-
-        return TOTAL_ORBITAL_GRADES - delta
+    def position(self, day):
+        """
+        TODO
+        """
+        delta = normalize(
+            math.radians(self.angular_speed) * day,
+            lower=-2*math.pi, upper=2*math.pi
+        )
+        return Position(self, day, delta)
 
 
 class SolarSystem:
@@ -64,16 +96,11 @@ class SolarSystem:
 
         return None
 
-    def position_coords(self, day):
+    def positions(self, day):
         """
         TODO
         """
-        coords = {}
-
-        for planet in self.planets():
-            coords[planet.name] = planet.position_coord(day)
-
-        return coords
+        return [p.position(day) for p in self.planets()]
 
 
 # vim: ai ts=4 sts=4 et sw=4 ft=python
