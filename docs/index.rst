@@ -10,7 +10,8 @@ Welcome to ml-st-1's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   planets
+   solar
+   forecast
    q
 
 Indices and tables
