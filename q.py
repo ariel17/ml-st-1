@@ -73,7 +73,7 @@ parser.add_argument(
 )
 
 
-def plot(day, prediction, coords):
+def plot(day, prediction_name, coords):
     x = [c.delta_to_xy()[0] for c in coords]
     y = [c.delta_to_xy()[1] for c in coords]
 
@@ -132,7 +132,7 @@ if __name__ == '__main__':
             })
 
             if args.plot_predicted:
-                plot(day, prediction, coords)
+                plot(day, prediction['name'], coords)
 
         if args.plot_all:
             plot(day, prediction, coords)
