@@ -36,6 +36,12 @@ class Weather:
         """
         raise NotImplementedError('Implement me!')
 
+    def is_rain(self):
+        """
+        TODO
+        """
+        return False
+
 
 class Drought(Weather):
     """
@@ -82,6 +88,9 @@ class Rain(Weather):
     """
     def __init__(self, coords):
         super(Rain, self).__init__('rain', coords)
+
+    def is_rain(self):
+        return True
 
     def check(self):
         """
@@ -135,6 +144,22 @@ class Rain(Weather):
 
         return s >= 0 and t >= 0 and s+t <= dd
 
+    def perimeter(self):
+        """
+        TODO
+        """
+        [p1, p2, p3] = [c.delta_to_xy() for c in self._coords]
+
+        v1 = self.diff(p1, p2)
+        v2 = self.diff(p2, p3)
+        v3 = self.diff(p1, p3)
+
+        v1_norm = numpy.linalg.norm(v1)
+        v2_norm = numpy.linalg.norm(v2)
+        v3_norm = numpy.linalg.norm(v3)
+
+        return v1_norm + v2_norm + v3_norm
+
 
 class Optimal(Weather):
     """
@@ -153,7 +178,13 @@ class Optimal(Weather):
         v2 = self.diff(p2, p3)
 
         cross = self.cross_product(v1, v2)
-        return cross == 0
+        dot = numpy.dot(v1, v2)
+        v1_norm = numpy.linalg.norm(v1)
+        v2_norm = numpy.linalg.norm(v2)
+
+        cos = abs(dot / (v1_norm * v2_norm))
+
+        return cross == 0 or 1 > cos > 0.9998
 
 
 class Forecast:
@@ -164,10 +195,14 @@ class Forecast:
         """
 
         for weather in [Drought(coords), Rain(coords), Optimal(coords)]:
+            result = {'name': None}
             if weather.check():
-                return weather.name
+                result['name'] = weather.name
+                if weather.is_rain():
+                    result['perimeter'] = weather.perimeter()
+                return result
 
-        return None
+        return {'name': None}
 
 
 # vim: ai ts=4 sts=4 et sw=4 ft=python
