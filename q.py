@@ -73,7 +73,7 @@ parser.add_argument(
 )
 
 
-def plot(day, prediction_name, coords):
+def plot(day, name, coords):
     x = [c.delta_to_xy()[0] for c in coords]
     y = [c.delta_to_xy()[1] for c in coords]
 
@@ -90,8 +90,8 @@ def plot(day, prediction_name, coords):
 
     plt.scatter([0], [0])
     plt.plot(x, y)
-    plt.title(prediction)
-    plt.savefig('plot/%d-%s.png' % (day, prediction))
+    plt.title(name)
+    plt.savefig('plot/%d-%s.png' % (day, name))
 
 
 if __name__ == '__main__':
@@ -135,7 +135,7 @@ if __name__ == '__main__':
                 plot(day, prediction['name'], coords)
 
         if args.plot_all:
-            plot(day, prediction, coords)
+            plot(day, prediction['name'], coords)
 
         if 'perimeter' in prediction and \
                 prediction['perimeter'] > totalized['max_rain']['perimeter']:
