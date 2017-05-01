@@ -50,7 +50,7 @@ class Planet:
     def __init__(self, name, distance, angular_speed, is_clockwise=True):
         self.name = name
         self.distance = distance
-        self.angular_speed = angular_speed if is_clockwise else -angular_speed
+        self.angular_speed = -angular_speed if is_clockwise else angular_speed
 
     def days_in_year(self):
         """
@@ -63,10 +63,7 @@ class Planet:
         """
         TODO
         """
-        delta = normalize(
-            math.radians(self.angular_speed) * day,
-            lower=-2*math.pi, upper=2*math.pi
-        )
+        delta = math.radians(self.angular_speed) * day
         return Position(self, day, delta)
 
 
