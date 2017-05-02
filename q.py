@@ -37,6 +37,7 @@ import matplotlib.pyplot as plt
 
 from forecast import Forecast
 from solar import SolarSystem
+import config
 import database
 
 
@@ -137,7 +138,7 @@ if __name__ == '__main__':
         totalized.setdefault(prediction['name'], 0)
         totalized[prediction['name']] += 1
 
-        db.set(day, json.dumps(prediction))
+        db.set('%s%d' % (config.DB_DAY_PREFIX, day), json.dumps(prediction))
 
         if prediction is not None:
             print({
