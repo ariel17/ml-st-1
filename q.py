@@ -31,11 +31,13 @@ Use example:
 """
 
 import argparse
+import json
 
 import matplotlib.pyplot as plt
 
-from solar import SolarSystem
 from forecast import Forecast
+from solar import SolarSystem
+import database
 
 
 solar = SolarSystem()
@@ -70,6 +72,11 @@ parser.add_argument(
     '--plot-predicted', dest='plot_predicted', action='store_true',
     default=False, help='Plot only predicted weather to an snapshot with '
     'forecast name.'
+)
+
+parser.add_argument(
+    '--db-clean', dest='db_clean', action='store_true',
+    default=False, help='Removes all existent data from database.'
 )
 
 
@@ -110,7 +117,13 @@ if __name__ == '__main__':
             "ones: %s" % available_planets
         )
 
+    db = database.connect()
+
+    if args.db_clean:
+        db.flushall()
+
     total_days = args.days + planet.days_in_year() * args.years
+    db.set('total', total_days)
     print("> Total days to calculate: %d (from %s point of view)" % (
         total_days, planet.name
     ))
@@ -123,6 +136,8 @@ if __name__ == '__main__':
         prediction = fc.predict(coords)
         totalized.setdefault(prediction['name'], 0)
         totalized[prediction['name']] += 1
+
+        db.set(day, json.dumps(prediction))
 
         if prediction is not None:
             print({
@@ -142,6 +157,7 @@ if __name__ == '__main__':
             totalized['max_rain']['perimeter'] = prediction['perimeter']
             totalized['max_rain']['day'] = day
 
+    db.set('max_rain', json.dumps(totalized['max_rain']))
     print("Totalization: %s" % totalized)
 
 # vim: ai ts=4 sts=4 et sw=4 ft=python

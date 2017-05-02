@@ -7,8 +7,7 @@ Weather prediction algorithm implementation.
 
 import numpy
 
-
-OPOSITE_ANGLE_GRADES = 180
+import config
 
 
 class Weather:
@@ -184,7 +183,8 @@ class Optimal(Weather):
 
         cos = abs(dot / (v1_norm * v2_norm))
 
-        return cross == 0 or 1 > cos > 0.9998
+        return cross == 0 or \
+            1 > cos >= (1 - config.OPTIMAL_ACEPTABLE_ROUND_ERROR)
 
 
 class Forecast:
