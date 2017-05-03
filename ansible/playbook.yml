@@ -50,7 +50,7 @@
         links:
           - "{{ redis_name }}:redis"
         volumes:
-          - "{{ plot_directory }}:/srv/ml-st-1/src/plot"
+          - "{{ plot_directory }}:/srv/ml-st-1/plot"
       tags:
         - api
 
