@@ -1,13 +1,15 @@
 ---
-version: "3"
+version: "2"
 services:
   api:
-    image: ariel17/ml-st-1
+    image: ariel17/ml-st-1:api
     ports:
       - "5000:5000"
     environment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
+    volumes:
+      - "./plot:/srv/ml-st-1/src/plot"
     links:
       - "redis:redis"
     depends_on:
@@ -17,3 +19,14 @@ services:
     image: redis
     ports:
       - "6379:6379"
+
+  web:
+    image: ariel17/ml-st-1:web
+    ports:
+      - "8000:80"
+    links:
+      - "api:api"
+    depends_on:
+      - api
+    volumes_from:
+      - api
