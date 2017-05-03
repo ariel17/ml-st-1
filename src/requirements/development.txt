@@ -1,0 +1,2 @@
+-r production.txt
+docker-compose==1.12.0
