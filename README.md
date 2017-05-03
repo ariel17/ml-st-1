@@ -24,8 +24,9 @@ technologies used:
 ## Deployment
 
 Deployment strategy can be found on `ansible` directory. It uses, as name
-states, Ansible tool for server provisioning. It is currently deployed on
-DigitalOcean's droplet of my own.
+states, [Ansible](https://www.ansible.com/) tool for server provisioning. It is
+currently deployed on [DigitalOcean's droplet](https://www.digitalocean.com/)
+of my own.
 
 ### API resources
 
