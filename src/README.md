@@ -6,7 +6,7 @@ The project provides a Composer file with a development environment:
 
 ```bash
 ~/ml-st-1$ cd src
-~/ml-st-1/src$ pip install -r docker-compose
+~/ml-st-1/src$ pip install docker-compose
 ~/ml-st-1/src$ docker-compose up  # and you're done :)
 ```
 
