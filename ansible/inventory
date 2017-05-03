@@ -1,0 +1,5 @@
+[all:vars]
+ansible_connection=ssh
+
+[sauron]
+sauron.ariel17.com.ar ansible_user=ariel17
