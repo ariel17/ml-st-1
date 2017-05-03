@@ -9,10 +9,10 @@
     api_name: ml-api
     api_image: ariel17/ml-st-1:api
     api_port: 8000
-    plot_directory: /src/ml-st-1/plot
+    plot_directory: /srv/ml-st-1/plot
     web_name: ml-web
     web_image: ariel17/ml-st-1:web
-    web_port: 9000
+    web_port: 8088
 
   tasks:
     - name: Creates Redis container
@@ -31,6 +31,7 @@
       file:
         path: "{{ plot_directory }}"
         state: directory
+        mode: 0777
       tags:
         - api
     
@@ -49,14 +50,14 @@
         links:
           - "{{ redis_name }}:redis"
         volumes:
-          - "{{ plot_directory }}:/src/ml-st-1/src/plot"
+          - "{{ plot_directory }}:/srv/ml-st-1/src/plot"
       tags:
         - api
 
     - name: Creates ML Web container
       docker:
-        name: "{{ api_name }}"
-        image: "{{ api_image }}"
+        name: "{{ web_name }}"
+        image: "{{ web_image }}"
         state: restarted
         pull: always
         restart_policy: always
