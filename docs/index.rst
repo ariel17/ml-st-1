@@ -10,9 +10,12 @@ Welcome to ml-st-1's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   solar
+   config
+   database
+   ds9
    forecast
    q
+   solar
 
 Indices and tables
 ==================

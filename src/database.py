@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """
-TODO
+Database connection module. It hides some *complexity* getting connection
+parameters and performing the connection itself.
 """
 
 import os
@@ -14,7 +15,11 @@ import config
 
 def connect():
     """
-    TODO
+    Gains environment values or default for database host and port values and
+    connects; it returns the client object.
+
+        >>> import database
+        >>> db = database.connect()
     """
     db = redis.StrictRedis(
         host=os.environ.get(config.REDIS_HOST_KEY, config.REDIS_HOST_DEFAULT),
@@ -24,7 +29,6 @@ def connect():
         )
     )
 
-    print("Connected :)")
     return db
 
 

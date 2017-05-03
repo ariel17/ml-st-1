@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 
 """
-TODO
+DS9 states for Deep Space 9, a Federation station orbiting Bajor. In this
+project it works as the API implementation for weather web service requested by
+Vulcano.
 """
 
 import json
@@ -25,13 +27,10 @@ db = database.connect()
 
 class Weather(Resource):
     """
-    TODO
+    It is the API resource providing weather information.
     """
 
     def __weather_repr(self, key, day=None):
-        """
-        TODO
-        """
         raw = db.get(key)
         if not raw:
             return None
@@ -45,7 +44,13 @@ class Weather(Resource):
 
     def get(self):
         """
-        TODO
+        GET verb implementation. It receives a non-mandatory parameter called
+        `day`, as follows:
+
+        * `/weather`: Retrieves all existent predicted weather in database,
+          with some metadata as total days analyzed and peak rain day.
+        * `/weather?day=N`: Returns the forecast predicted for the indicated
+          day, if it exists on database.
         """
         args = parser.parse_args()
 

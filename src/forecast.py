@@ -12,7 +12,11 @@ import config
 
 class Weather:
     """
-    TODO
+    Base implementation for weather algorithms.
+
+    :param str name: The weather name to represent.
+    :param list coords: A list containing `solar.Position` objects for each
+                        planet.
     """
 
     def __init__(self, name, coords):
@@ -20,6 +24,18 @@ class Weather:
         self._coords = coords
 
     def cross_product(self, p1, p2):
+        """
+        Cross product for points `p1` and `p2` (vector from origin
+        representations).
+
+        :param array p1: An array representation of cartesian coords `[x, y]`
+                         for the first point.
+        :param array p2: An array representation of cartesian coords `[x, y]`
+                         for the second point.
+        :returns: It represents the area of formed parallelogram between the
+                  vectors.
+        :rtype: float
+        """
         a1 = numpy.array(p1)
         a2 = numpy.array(p2)
 
@@ -27,24 +43,41 @@ class Weather:
         return cross
 
     def diff(self, p1, p2):
+        """
+        Difference vector for 2 points (vector from origin representations)
+
+        :param array p1: An array representation of cartesian coords `[x, y]`
+                         for the first point.
+        :param array p2: An array representation of cartesian coords `[x, y]`
+                         for the second point.
+        :returns: A new vector as the difference between the vectors to given
+                  points.
+        :rtype: numpy.array
+        """
         return numpy.array(p1) - numpy.array(p2)
 
     def check(self):
         """
-        TODO
+        Applies weather algorithm to given data to validate it, but just an
+        skeleton for heritage.
         """
         raise NotImplementedError('Implement me!')
 
     def is_rain(self):
         """
-        TODO
+        Indicates if current implementation corresponds to Rain weather or not.
+
+        :rtype: bool
         """
         return False
 
 
 class Drought(Weather):
     """
-    TODO
+    Drought algorithm implementation.
+
+    :param list coords: A list containing `solar.Position` objects for each
+                        planet.
     """
 
     def __init__(self, coords):
@@ -53,6 +86,9 @@ class Drought(Weather):
     def check(self):
         """
         Predicts if current coordenates derivates in drought.
+
+        :returns: `True` when all planets all aligned between and the Sun.
+        :rtype: bool
 
         >>> from math import radians, pi
         >>> from solar import SolarSystem, Position
@@ -83,7 +119,10 @@ class Drought(Weather):
 
 class Rain(Weather):
     """
-    TODO
+    Rain algorithm implementation.
+
+    :param list coords: A list containing `solar.Position` objects for each
+                        planet.
     """
     def __init__(self, coords):
         super(Rain, self).__init__('rain', coords)
@@ -93,7 +132,8 @@ class Rain(Weather):
 
     def check(self):
         """
-        Verifies if weather condition for rain is given.
+        Verifies if weather condition for rain is given. The Sun must be inside
+        the triangle formed by all unaligned planets.
 
         Sources:
 
@@ -145,7 +185,10 @@ class Rain(Weather):
 
     def perimeter(self):
         """
-        TODO
+        Determines the perimeter of the formed triangle by all planets.
+
+        :returns: The perimeter value.
+        :rtype: float
         """
         [p1, p2, p3] = [c.delta_to_xy() for c in self._coords]
 
@@ -162,7 +205,10 @@ class Rain(Weather):
 
 class Optimal(Weather):
     """
-    TODO
+    Optimal weather algorithm implementation.
+
+    :param list coords: A list containing `solar.Position` objects for each
+                        planet.
     """
     def __init__(self, coords):
         super(Optimal, self).__init__('optimal', coords)
@@ -170,6 +216,9 @@ class Optimal(Weather):
     def check(self):
         """
         Verifies if optimal weather conditions are given.
+
+        :returns: `True` when all planets are aligned but the Sun.
+        :rtype: bool
         """
         [p1, p2, p3] = [c.delta_to_xy() for c in self._coords]
 
@@ -188,10 +237,21 @@ class Optimal(Weather):
 
 
 class Forecast:
+    """
+    A factory class for all weather implementations that applies to every day
+    in order to predict future conditions.
+    """
 
     def predict(self, coords):
         """
-        TODO
+        Applies all algorithms to a given date to find which one matches, if
+        any.
+
+        :param list coords: A list containing lists of `solar.Position` objects
+                            for each planet, for each day.
+        :returns: A dictionary containing the predicted weather name and, if
+                  it is corresponds, the triangle perimeter.
+        :rtype: dict
         """
 
         for weather in [Drought(coords), Rain(coords), Optimal(coords)]:

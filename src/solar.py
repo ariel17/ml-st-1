@@ -7,10 +7,16 @@ United Federation of Planets implementation for Solar System representation.
 
 import math
 import numpy
-from angles import normalize
 
 
 class Position:
+    """
+    A planet position representation and utilities.
+
+    :param Planet planet: An instance of a planet to represent.
+    :param int day: The day number to represent.
+    :param float delta: The position displacement for the given day, in radians.
+    """
 
     def __init__(self, planet, day, delta):
         self.planet = planet
@@ -22,7 +28,10 @@ class Position:
 
     def delta_to_xy(self):
         """
-        TODO
+        Converts current radian position to cartesian coordenates.
+
+        :returns: A `[x, y]` array representing cartesian coordenates.
+        :rtype: array
         """
         point = (
             self.planet.distance * self.__round(math.cos(self.delta)),
@@ -45,6 +54,12 @@ class Position:
 class Planet:
     """
     A planet representation of the solar system for weather forecast.
+
+    :param str name: Planet name to use.
+    :param int distance: Distance to Sun in kilometers.
+    :param int angular_speed: Angular speed **in deegress**.
+    :param bool is_clockwise: Does the planet round in clockwise orientation?
+                              Default: `True`.
     """
 
     def __init__(self, name, distance, angular_speed, is_clockwise=True):
@@ -56,12 +71,16 @@ class Planet:
         """
         Based on its angular speed, it returns how many days takes to complete
         an orbit.
+
+        :rtype: int
         """
         return abs(int((2 * math.pi) / math.radians(self.angular_speed)))
 
     def position(self, day):
         """
-        TODO
+        Creates a Position object corresponding to the indicated day.
+
+        :rtype: Position
         """
         delta = math.radians(self.angular_speed) * day
         return Position(self, day, delta)
@@ -69,7 +88,7 @@ class Planet:
 
 class SolarSystem:
     """
-    TODO
+    A solar system representation. It already knows which planets it has.
     """
 
     def __init__(self):
@@ -79,13 +98,19 @@ class SolarSystem:
 
     def planets(self):
         """
-        TODO
+        Returns a list of planets in the system.
+
+        :rtype: list
         """
         return [self.ferengi, self.betasoide, self.vulcano]
 
     def planet_by_name(self, name):
         """
-        TODO
+        Returns the Planet instance associated to the given name, if it exists.
+
+        :param str name: The planet name to fetch.
+        :returns: The Planet name associated, if exists.
+        :rtype: Planet
         """
         for planet in self.planets():
             if planet.name == name:
@@ -95,7 +120,11 @@ class SolarSystem:
 
     def positions(self, day):
         """
-        TODO
+        Returns a list with all positions for all planets for a given day.
+
+        :param int day: The day number to represent.
+        :returns: All planetary position representation.
+        :rtype: list
         """
         return [p.position(day) for p in self.planets()]
 
