@@ -161,4 +161,5 @@ if __name__ == '__main__':
     db.set('max_rain', json.dumps(totalized['max_rain']))
     print("Totalization: %s" % totalized)
 
+
 # vim: ai ts=4 sts=4 et sw=4 ft=python
