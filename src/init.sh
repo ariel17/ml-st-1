@@ -1,4 +1,3 @@
 #!/bin/bash
 
-python q.py --years 10 --db-clean
-python ds9.py --host=0.0.0.0
+python q.py --years 10 --db-clean --plot-predicted && python ds9.py

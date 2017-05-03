@@ -24,8 +24,8 @@ but I left that to you.
 
 ### Data generation
 
-It needs a Redis database available to work properly. You can use environment
-variables to override default values:
+For data generation exists the Q program. It needs a Redis database available
+to work properly. You can use environment variables to override default values:
 
 * REDIS_HOST: localhost
 * REDIS_PORT: 6379
@@ -35,7 +35,7 @@ variables to override default values:
 ~/ml-st-1/src$ python q.py --days 100
 ~/ml-st-1/src$ python q.py --days 100 --years 10  # combination is allowed!
 ~/ml-st-1/src$ python q.py --years 10 --from-planet Ferengi  # also Betasoide
-~/ml-st-1/src$ python q.py -h  # details of commands
+~/ml-st-1/src$ python q.py -h  # details of commands; there's also plot capabilities
 ```
 
 ### Web service
