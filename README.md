@@ -32,7 +32,7 @@ of my own.
 
 * **All weather available with metadata:** http://ml.ariel17.com.ar:8088/weather
 * **Weather query:** http://ml.ariel17.com.ar:8088/weather?day=DAY_NUMBER
-* **Plotted content:** http://ml.ariel17.com.ar:8088/plot
+* **Plotted content:** http://ml.ariel17.com.ar:8088/plot/
 
 ## Authors
 
