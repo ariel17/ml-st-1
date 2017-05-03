@@ -30,8 +30,8 @@ of my own.
 
 ### API resources
 
-* **All weather available with metadata:** http://sauron.ariel17.com.ar:6000/weather
-* **Weather query:** http://sauron.ariel17.com.ar:6000/weather?day=DAY_NUMBER
+* **All weather available with metadata:** http://sauron.ariel17.com.ar:8000/weather
+* **Weather query:** http://sauron.ariel17.com.ar:8000/weather?day=DAY_NUMBER
 
 ## Authors
 
