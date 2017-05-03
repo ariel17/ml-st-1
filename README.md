@@ -28,6 +28,8 @@ states, [Ansible](https://www.ansible.com/) tool for server provisioning. It is
 currently deployed on [DigitalOcean's droplet](https://www.digitalocean.com/)
 of my own.
 
+* Docker images: https://hub.docker.com/r/ariel17/ml-st-1/
+
 ### API resources
 
 * **All weather available with metadata:** http://ml.ariel17.com.ar:8088/weather
