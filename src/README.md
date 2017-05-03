@@ -1,6 +1,18 @@
 # ml-st-1
 
-## Installation
+## Using docker to run it
+
+The project provides a Composer file with a development environment:
+
+```bash
+~/ml-st-1$ cd src
+~/ml-st-1/src$ pip install -r docker-compose
+~/ml-st-1/src$ docker-compose up  # and you're done :)
+```
+
+## Manual installation
+
+### Dependencies
 
 The use of [Virtualenv](https://virtualenv.pypa.io/en/stable/) is recommended,
 but I left that to you.
@@ -10,7 +22,7 @@ but I left that to you.
 ~/ml-st-1/src$ pip install -r requirements/development.txt  # that's all!
 ```
 
-## Data generation
+### Data generation
 
 It needs a Redis database available to work properly. You can use environment
 variables to override default values:
@@ -26,7 +38,7 @@ variables to override default values:
 ~/ml-st-1/src$ python q.py -h  # details of commands
 ```
 
-## Web service
+### Web service
 
 It also needs a Redis database, ideally with some data loaded by Q.
 
@@ -34,7 +46,7 @@ It also needs a Redis database, ideally with some data loaded by Q.
 ~/ml-st-1/src$ python ds9.py  # de-facto binding on 0.0.0.0:5000
 ```
 
-## Test it
+### Test it
 
 ```bash
 ~/ml-st-1$ python -m doctest -v *.py
