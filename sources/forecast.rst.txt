@@ -1,6 +1,0 @@
-==========
- Forecast
-==========
-
-.. automodule:: forecast
-   :members:
